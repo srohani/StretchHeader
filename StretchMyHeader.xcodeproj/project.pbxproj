@@ -11,7 +11,6 @@
 		29CB69281C04F81900370DA0 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB69271C04F81900370DA0 /* MasterViewController.swift */; };
 		29CB692A1C04F81900370DA0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB69291C04F81900370DA0 /* DetailViewController.swift */; };
 		29CB692D1C04F81900370DA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29CB692B1C04F81900370DA0 /* Main.storyboard */; };
-		29CB692F1C04F81900370DA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29CB692E1C04F81900370DA0 /* Assets.xcassets */; };
 		29CB69321C04F81900370DA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29CB69301C04F81900370DA0 /* LaunchScreen.storyboard */; };
 		29CB693D1C04F81900370DA0 /* StretchMyHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB693C1C04F81900370DA0 /* StretchMyHeaderTests.swift */; };
 		29CB69481C04F88900370DA0 /* HeadlineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB69471C04F88900370DA0 /* HeadlineTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -35,7 +34,6 @@
 		29CB69271C04F81900370DA0 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		29CB69291C04F81900370DA0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		29CB692C1C04F81900370DA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		29CB692E1C04F81900370DA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29CB69311C04F81900370DA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29CB69331C04F81900370DA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29CB69381C04F81900370DA0 /* StretchMyHeaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StretchMyHeaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,11 +85,10 @@
 			children = (
 				29CB69251C04F81900370DA0 /* AppDelegate.swift */,
 				29CB69271C04F81900370DA0 /* MasterViewController.swift */,
+				29CB69471C04F88900370DA0 /* HeadlineTableViewCell.swift */,
 				29CB69291C04F81900370DA0 /* DetailViewController.swift */,
 				29CB69491C04FD0200370DA0 /* NewsItem.swift */,
 				29CB692B1C04F81900370DA0 /* Main.storyboard */,
-				29CB69471C04F88900370DA0 /* HeadlineTableViewCell.swift */,
-				29CB692E1C04F81900370DA0 /* Assets.xcassets */,
 				29CB694B1C05263300370DA0 /* Stretchy-Header.xcassets */,
 				29CB69301C04F81900370DA0 /* LaunchScreen.storyboard */,
 				29CB69331C04F81900370DA0 /* Info.plist */,
@@ -192,7 +189,6 @@
 			files = (
 				29CB694C1C05263300370DA0 /* Stretchy-Header.xcassets in Resources */,
 				29CB69321C04F81900370DA0 /* LaunchScreen.storyboard in Resources */,
-				29CB692F1C04F81900370DA0 /* Assets.xcassets in Resources */,
 				29CB692D1C04F81900370DA0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,12 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [AnyObject]()
+    private let kTableHeaderHeight: CGFloat = 300.0
+    var headerView: UIView!
+    private let kTableHeaderCutAway: CGFloat = 80.0
+    var headerMaskLayer: CAShapeLayer!
+    
+    
     
     
     
@@ -21,9 +27,6 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
         
         
         let world: NewsItem = NewsItem(category: NewsItem.Category.World, headline: "Climate change protests, divestments meet fossil fuels realities")
@@ -36,6 +39,23 @@ class MasterViewController: UITableViewController {
         let europe2: NewsItem = NewsItem(category: NewsItem.Category.Europe, headline: "'One million babies' created by EU student exchanges")
         objects = [world, africa, europe, middleeast, asiapacific, americas, world2, europe2]
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        headerView = tableView.tableHeaderView
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
+        
+        tableView.contentInset = UIEdgeInsets(top: kTableHeaderHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -kTableHeaderHeight)
+        updateHeaderView()
+        
+        
+        
+        let effectiveHeight = kTableHeaderHeight - kTableHeaderCutAway/2
+        tableView.contentInset = UIEdgeInsets(top: effectiveHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -effectiveHeight)
+        
+        
         
         
 
@@ -45,7 +65,59 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        headerMaskLayer = CAShapeLayer()
+        headerMaskLayer.fillColor = UIColor.blackColor().CGColor
+        
+        headerView.layer.mask = headerMaskLayer
+        updateHeaderView()
+        
     }
+    
+    
+    func updateHeaderView() {
+        
+        
+        let effectiveHeight = kTableHeaderHeight - kTableHeaderCutAway/2
+        var headerRect = CGRect (x: 0, y: -kTableHeaderHeight, width: tableView.bounds.width, height: kTableHeaderHeight)
+        if tableView.contentOffset.y < -effectiveHeight {
+            headerRect.origin.y = tableView.contentOffset.y
+            headerRect.size.height = -tableView.contentOffset.y + kTableHeaderCutAway/2
+        }
+        headerView.frame = headerRect
+        
+        
+        let path = UIBezierPath()
+        path.moveToPoint(CGPoint(x: 0, y: 0))
+        path.addLineToPoint(CGPoint(x: headerRect.width, y: 0))
+        path.addLineToPoint(CGPoint(x: headerRect.width, y: headerRect.height))
+        path.addLineToPoint(CGPoint(x: 0, y: headerRect.height-kTableHeaderCutAway))
+        headerMaskLayer?.path = path.CGPath
+        
+        
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        updateHeaderView()
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    
+    
 
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
@@ -88,12 +160,14 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! HeadlineTableViewCell
 
         let object = objects[indexPath.row]
         
-        cell.category.text = object.category
-        cell.headline.text = object.
+        cell.newsItem = object as? NewsItem
+        
+
         
         return cell
     }

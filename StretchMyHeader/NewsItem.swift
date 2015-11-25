@@ -26,12 +26,30 @@ class NewsItem: NSObject {
 
 extension NewsItem {
     enum Category: String {
-        case World = "World"
-        case MiddleEast = "Middle East"
-        case AsiaPacific = "Asia Pacific"
-        case Americas = "Americas"
-        case Europe = "Europe"
-        case Africa = "Africa"
+        case World
+        case MiddleEast
+        case AsiaPacific
+        case Americas
+        case Europe
+        case Africa
+        
+        func categoryTextString() -> String {
+            switch self {
+            case .World:
+                return "World"
+            case .MiddleEast:
+                return "Middle East"
+            case .AsiaPacific:
+                return "Asia Pacific"
+            case .Americas:
+                return "Americas"
+            case .Europe:
+                return "Europe"
+            case .Africa:
+                return "Africa"
+            }
+        }
+        
         
         func categoryTextColor() -> UIColor {
             
